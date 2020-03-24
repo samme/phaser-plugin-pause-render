@@ -47,30 +47,21 @@ var PauseRenderPlugin = /*@__PURE__*/(function (superclass) {
   var prototypeAccessors = { paused: { configurable: true } };
 
   PauseRenderPlugin.prototype.init = function init (data) {
-    console.debug('init');
-    console.debug('data', data);
-
     this.paused = (data && data.paused) || false;
   };
 
   PauseRenderPlugin.prototype.start = function start () {
-    console.debug('start');
-
     this.game.events.once(DESTROY, this.destroy, this);
 
     this.game.step = _step;
   };
 
   PauseRenderPlugin.prototype.stop = function stop () {
-    console.debug('stop');
-
     this.resume();
     this.game.step = _origStep;
   };
 
   PauseRenderPlugin.prototype.destroy = function destroy () {
-    console.debug('destroy');
-
     this.stop();
 
     superclass.prototype.destroy.call(this);
