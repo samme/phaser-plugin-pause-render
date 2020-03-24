@@ -29,30 +29,21 @@ const _step = function (time, delta) {
 
 export default class PauseRenderPlugin extends Phaser.Plugins.BasePlugin {
   init (data) {
-    console.debug('init');
-    console.debug('data', data);
-
     this.paused = (data && data.paused) || false;
   }
 
   start () {
-    console.debug('start');
-
     this.game.events.once(DESTROY, this.destroy, this);
 
     this.game.step = _step;
   }
 
   stop () {
-    console.debug('stop');
-
     this.resume();
     this.game.step = _origStep;
   }
 
   destroy () {
-    console.debug('destroy');
-
     this.stop();
 
     super.destroy();
