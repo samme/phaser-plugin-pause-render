@@ -7,3 +7,5 @@ globals:
   SharedArrayBuffer: readonly
   Phaser: readonly
   PhaserPauseRenderPlugin: readonly
+rules:
+  no-console: off

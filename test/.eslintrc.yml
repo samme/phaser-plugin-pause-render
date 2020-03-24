@@ -10,4 +10,5 @@ globals:
   PhaserPauseRenderPlugin: readonly
   chai: readonly
 rules:
+  no-console: off
   no-new: off
