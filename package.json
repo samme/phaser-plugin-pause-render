@@ -1,6 +1,6 @@
 {
   "name": "phaser-plugin-pause-render",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "main": "dist/phaser-plugin-pause-render.cjs.js",
   "module": "dist/phaser-plugin-pause-render.esm.js",
   "browser": "dist/phaser-plugin-pause-render.umd.js",
