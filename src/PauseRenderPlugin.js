@@ -2,11 +2,9 @@ import Phaser from 'phaser';
 
 const { PRE_STEP, STEP, POST_STEP, PRE_RENDER, POST_RENDER, DESTROY } = Phaser.Core.Events;
 
-const _origStep = Phaser.Game.prototype.step;
+const origStep = Phaser.Game.prototype.step;
 
-let paused = false;
-
-const _step = function (time, delta) {
+const step = function (time, delta) {
   if (this.pendingDestroy) {
     return this.runDestroy();
   }
@@ -27,25 +25,25 @@ const _step = function (time, delta) {
   events.emit(POST_RENDER, renderer, time, delta);
 };
 
+let paused = false;
+
 export default class PauseRenderPlugin extends Phaser.Plugins.BasePlugin {
   init (data) {
-    this.paused = (data && data.paused) || false;
+    this.paused = data ? data.paused : false;
   }
 
   start () {
     this.game.events.once(DESTROY, this.destroy, this);
-
-    this.game.step = _step;
+    this.game.step = step;
   }
 
   stop () {
     this.resume();
-    this.game.step = _origStep;
+    this.game.step = origStep;
   }
 
   destroy () {
     this.stop();
-
     super.destroy();
   }
 
@@ -62,6 +60,6 @@ export default class PauseRenderPlugin extends Phaser.Plugins.BasePlugin {
   }
 
   set paused (val) {
-    return (paused = val);
+    paused = val;
   }
 }
