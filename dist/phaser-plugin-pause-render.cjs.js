@@ -12,11 +12,9 @@ var PRE_RENDER = ref.PRE_RENDER;
 var POST_RENDER = ref.POST_RENDER;
 var DESTROY = ref.DESTROY;
 
-var _origStep = Phaser.Game.prototype.step;
+var origStep = Phaser.Game.prototype.step;
 
-var paused = false;
-
-var _step = function (time, delta) {
+var step = function (time, delta) {
   if (this.pendingDestroy) {
     return this.runDestroy();
   }
@@ -39,6 +37,8 @@ var _step = function (time, delta) {
   events.emit(POST_RENDER, renderer, time, delta);
 };
 
+var paused = false;
+
 var PauseRenderPlugin = /*@__PURE__*/(function (superclass) {
   function PauseRenderPlugin () {
     superclass.apply(this, arguments);
@@ -51,23 +51,21 @@ var PauseRenderPlugin = /*@__PURE__*/(function (superclass) {
   var prototypeAccessors = { paused: { configurable: true } };
 
   PauseRenderPlugin.prototype.init = function init (data) {
-    this.paused = (data && data.paused) || false;
+    this.paused = data ? data.paused : false;
   };
 
   PauseRenderPlugin.prototype.start = function start () {
     this.game.events.once(DESTROY, this.destroy, this);
-
-    this.game.step = _step;
+    this.game.step = step;
   };
 
   PauseRenderPlugin.prototype.stop = function stop () {
     this.resume();
-    this.game.step = _origStep;
+    this.game.step = origStep;
   };
 
   PauseRenderPlugin.prototype.destroy = function destroy () {
     this.stop();
-
     superclass.prototype.destroy.call(this);
   };
 
@@ -84,7 +82,7 @@ var PauseRenderPlugin = /*@__PURE__*/(function (superclass) {
   };
 
   prototypeAccessors.paused.set = function (val) {
-    return (paused = val);
+    paused = val;
   };
 
   Object.defineProperties( PauseRenderPlugin.prototype, prototypeAccessors );
