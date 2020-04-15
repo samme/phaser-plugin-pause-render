@@ -41,7 +41,9 @@
   "directories": {
     "test": "test"
   },
-  "dependencies": {},
+  "dependencies": {
+    "acorn": "^6.4.1"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/samme/phaser-plugin-pause-render.git"
