@@ -36,7 +36,7 @@
     "dist",
     "src"
   ],
-  "description": "Lets you pause or resume the renderer",
+  "description": "Pause or resume rendering",
   "homepage": "https://github.com/samme/phaser-plugin-pause-render",
   "directories": {
     "test": "test"
@@ -47,6 +47,8 @@
     "url": "https://github.com/samme/phaser-plugin-pause-render.git"
   },
   "keywords": [
+    "phaser",
+    "phaser3",
     "phaser-plugin",
     "phaser3-plugin"
   ],
