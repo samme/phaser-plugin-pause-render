@@ -1,33 +1,39 @@
 Phaser 3 Pause Render Plugin 📱🔥
 ============================
 
-```js
-// Install:
+Install
+-------
 
+```js
 new Phaser.Game({
     plugins: {
         global: [
-            {
-                key: 'PhaserPauseRenderPlugin',
-                plugin: PhaserPauseRenderPlugin,
-                mapping: 'rendering'
-            }
+            { key: 'PhaserPauseRenderPlugin', plugin: PhaserPauseRenderPlugin, mapping: 'render' }
         ]
     }
 }
 ```
 
-```js
-// In a scene:
-
-this.rendering.pause();
-this.rendering.resume();
-
-this.rendering.paused = true;
-this.rendering.paused = false;
-```
+You can use any `mapping`.
 
 Modules
 -------
 
-Use this package's default export instead of `PhaserPauseRenderPlugin`.
+```js
+import PauseRenderPlugin from 'phaser-plugin-pause-render';
+```
+
+Then use the imported value instead of `PhaserPauseRenderPlugin`.
+
+Use
+---
+
+```js
+// In a scene:
+
+this.render.pause();
+this.render.resume();
+
+this.render.paused = true;
+this.render.paused = false;
+```
